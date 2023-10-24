@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+      <div class="card w-100 h-100">
+        <div class="card-body">
+          <h2 class="card-title">Electricity Tariff Comparison</h2>
+
+          <form (ngSubmit)="calculateCost()" [formGroup]="tariffCalculatorFormGroup">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="form-group">
+                        <label for="consumption">Enter Consumption (kWh/year):</label>
+                        <input type="number" id="consumption" class="form-control" formControlName="consumption">
+                      </div>
+                </div>
+                <div class="col-lg-4 mt-4">
+                    <button type="submit" class="btn btn-primary" [disabled]="tariffCalculatorFormGroup.invalid" >Calculate</button>
+                </div>
+            </div>
+           
+            
+          </form>
+
+          <div *ngIf="tariffs.length != 0">
+            <h3 class="mt-4">Annual Costs</h3>
+            <ul class="list-group">
+              <li *ngFor="let tariff of tariffs" class="list-group-item">
+                <strong>{{ tariff.name }}</strong>: {{ tariff.annualCost }} €/year
+              </li>
+            </ul>
+          </div>
+          
+        </div>
+      </div>
+  </div>
+</div>
